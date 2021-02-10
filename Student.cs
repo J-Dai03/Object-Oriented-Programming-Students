@@ -4,17 +4,14 @@ using System.Text;
 
 namespace Object_Oriented_Programming_Students
 {
-    class Student
+    class Student : Human
     {
         // Create values
-        private string FullName;
-        private int Age, CSScore;
+        private int CSScore;
 
         // Default constructor
         public Student()
         {
-            FullName = "";
-            Age = 0;
             CSScore = 0;
         }
 
