@@ -4,23 +4,26 @@ using System.Text;
 
 namespace Object_Oriented_Programming_Students
 {
-    class Student : Human
+    class Teacher : Human
     {
         // Create values
         private string[] Subjects;
-        private string[] Grades;
+        //As in the subjects they teach
         private int NumberOfSubjects = 0;
         private string Form;
 
-        // Constructor
-        public Student(string form, string address, int age, string name)
+        //Constructor
+        public Teacher(string form, string address, int age, string name)
         {
             Form = form;
             SetName(name);
             SetAddress(address);
             SetAge(age);
-            Subjects = new string[5] { "", "", "", "", "" };
-            Grades = new string[5] { "", "", "", "", "" };
+            Subjects = new string[10];
+            for (int i = 0; i < 10; i++)
+            {
+                Subjects[i] = "";
+            }
         }
 
         //Get Set functions
@@ -32,33 +35,24 @@ namespace Object_Oriented_Programming_Students
         {
             Subjects[SubjectNum] = INPUT;
         }
-        public string GetGrade(int INPUT)
-        {
-            return Grades[INPUT];
-        }
-        public void SetGrade(int SubjectNum, string INPUT)
-        {
-            Grades[SubjectNum] = INPUT;
-        }
 
         //Subject adder
-        public void SubjectAdder(string SubName, string SubGrade)
+        public void SubjectAdder(string SubName)
         {
             //check if the subject has already been inputted
             int ItemPos = StringArraySearch(SubName, Subjects);
             if (ItemPos == -1)
             {
-                SetGrade(NumberOfSubjects, SubGrade);
                 SetSubject(NumberOfSubjects, SubName);
                 NumberOfSubjects++;
             }
             else
             {
-                SetGrade(ItemPos, SubGrade);
+                SetSubject(ItemPos, SubName); ;
             }
         }
-        
-        //Search for subject
+
+        //String array searcher
         public int StringArraySearch(string target, string[] InputtedArray)
         {
             bool Presence = false;
@@ -97,9 +91,6 @@ namespace Object_Oriented_Programming_Students
                         TempString = Subjects[compared + 1];
                         Subjects[compared + 1] = Subjects[compared];
                         Subjects[compared] = TempString;
-                        TempString = Grades[compared + 1];
-                        Grades[compared + 1] = Grades[compared];
-                        Grades[compared] = TempString;
                     }
                 }
             }
